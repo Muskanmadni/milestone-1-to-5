@@ -1,0 +1,89 @@
+
+<html>
+    <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport"
+            content="width=device-width,inital-scale=1.0">
+            <title>My Resume
+           </title>
+           <link rel="stylesheet" href="style.css">
+        </head>
+        <body class="background">
+            <header class="header">
+                <div >
+                    <img src="Resume-builder-logo.png" alt="header-logo" class="header-logo">
+                </div>
+                <div class="header-button">
+                    <!-- <p>Home</p> -->
+                    <a href="index.html" class="header-anchor">
+                    <p>Home</p>
+                    </a>
+                    <a href="resume-form.html" class="header-anchor">
+                        <p>Create Resume</p>
+                    </a>
+                </div>
+                
+            </header>
+            <img class="background-image " src="background-image.png" alt="backgound">
+            <section class="form-section">
+                    <div>
+                        <form class="form" id="form">
+                            <fieldset class="Personal-information">
+                                <legend>Personal Information</legend>
+
+                                <label for="username">username</label>
+                                <input id="username" name="username" class="writing-bar" required>
+
+
+
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" class="writing-bar" required>
+                                <br>
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" class="writing-bar" required>
+                                <br>
+                                <label for="Contact">Contact</label>
+                                <input type="tel" id="Contact" name="Contact" class="writing-bar" required>
+                                <br>
+                                <label for="date-of-Birth">D.O.B</label>
+                                <input type="text" id="date-of-Birth" name="date-of-Birth" class="writing-bar" required>
+                            </fieldset>
+                   
+                            <fieldset class="education">
+                                <label for="Degree">Education</label>
+                                <textarea type="text" id="Degree" name="Degree" class="textarea"></textarea>
+                                <br>
+                            </fieldset>
+                            <fieldset class="skills">
+                                <label for="Skills">Skills</label>
+                                <textarea id="Skills" name="Skills" class="textarea"></textarea>
+                                <br>
+                            </fieldset>
+                            <fieldset class="link-account">
+                                <label for="Experience">Experience</label>
+                                <textarea id="Experience" name="Experience" class="textarea"></textarea>
+                            </fieldset>
+                            <button type="submit" class="form-buttons">Submit</button>
+                            <button type="reset" class="form-buttons">Reset</button>
+                        </form>
+                        
+                        <br>
+
+                        <section>
+                            <div id="shareable-link-container" style="display: none;">
+                                <h2>shareable Link</h2>
+                                <p>Here is your Link :</p>
+                                <a href="#" id="shareable-link" target="_blank"></a>
+                                <br>
+                                <button id="downloadpdf">Download as PDF</button>
+                            </div>
+                        </section>
+
+                        <div id="resumePreview"></div>
+                        <script src="script.js"></script>                      
+                    </div>
+                </div>
+            </section>
+        </body>
+    </html>
