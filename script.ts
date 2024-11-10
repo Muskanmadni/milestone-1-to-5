@@ -8,12 +8,11 @@ const pdfbutton = document.getElementById('download-Button') as HTMLButtonElemen
 
 const form = document.getElementById('form') as HTMLFormElement;
 const resumeDisplayElement = document.getElementById('resumePreview')as HTMLDivElement
-const profile = document.getElementById('profilepic') as HTMLInputElement
+
 
 
 form.addEventListener('submit', (event : Event) =>{ 
     event.preventDefault();
-    const profile = (document.getElementById('profilepic') as HTMLInputElement).value;
     const username = (document.getElementById('username') as HTMLInputElement).value;
     const name = (document.getElementById('name')as HTMLInputElement).value
     const email = (document.getElementById('email')as HTMLInputElement).value
@@ -37,7 +36,6 @@ form.addEventListener('submit', (event : Event) =>{
     const resumePreview = `
     <h2><b>Resume</b></h2>
     <h3>Personal Information</h3>
-    <p><b></b><span contenteditable="true">${profile}</span></p>
     <p><b>Name : </b><span contenteditable="true">${name}</span></p>
     <p><b>Email : </b><span contenteditable="true">${email}</span></p>
     <p><b>Contact : </b><span contenteditable="true">${contact}</span></p>
@@ -76,8 +74,6 @@ if (username) {
     const savedResumeData = localStorage.getItem(username);
     if (savedResumeData) {
         const resumeData = JSON.parse(savedResumeData);
-            (document.getElementById('profilepic') as HTMLInputElement).value = 
-            resumeData.profilepic;
             (document.getElementById('username') as HTMLInputElement).value = username;
             (document.getElementById('name') as HTMLInputElement).value = 
             resumeData.name;
