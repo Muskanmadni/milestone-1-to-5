@@ -1,16 +1,19 @@
 
 const shareableLink = document.getElementById('shareable-link-container') as HTMLDivElement;
 const shareableLinks = document.getElementById('shareable-link') as HTMLAnchorElement;
-const pdfbutton = document.getElementById('Downloadpdf') as HTMLButtonElement;
+const pdfbutton = document.getElementById('download-Button') as HTMLButtonElement;
 
 
 
 
 const form = document.getElementById('form') as HTMLFormElement;
 const resumeDisplayElement = document.getElementById('resumePreview')as HTMLDivElement
+const profile = document.getElementById('profilepic') as HTMLInputElement
+
 
 form.addEventListener('submit', (event : Event) =>{ 
     event.preventDefault();
+    const profile = (document.getElementById('profilepic') as HTMLInputElement).value;
     const username = (document.getElementById('username') as HTMLInputElement).value;
     const name = (document.getElementById('name')as HTMLInputElement).value
     const email = (document.getElementById('email')as HTMLInputElement).value
@@ -31,10 +34,10 @@ form.addEventListener('submit', (event : Event) =>{
     localStorage.setItem(username, JSON.stringify(resumeData)); // Saving the data locally
 
 
-
     const resumePreview = `
     <h2><b>Resume</b></h2>
     <h3>Personal Information</h3>
+    <p><b></b><span contenteditable="true">${profile}</span></p>
     <p><b>Name : </b><span contenteditable="true">${name}</span></p>
     <p><b>Email : </b><span contenteditable="true">${email}</span></p>
     <p><b>Contact : </b><span contenteditable="true">${contact}</span></p>
@@ -52,11 +55,13 @@ form.addEventListener('submit', (event : Event) =>{
     shareableLink.style.display = 'block';
     shareableLinks.href = shareableURL;
     shareableLinks.textContent = shareableURL;
+    
 });
 // Handle PDF download
-pdfbutton.addEventListener('click' , () => {
-    window.print() // This will open the print dialog and allow the user to save as PDF
+pdfbutton.addEventListener('click', () => {
+    window.print()
 });
+
 // Prefill the form based on the username in the URL
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -66,17 +71,19 @@ window.addEventListener('DOMContentLoaded', () => {
 window.addEventListener('DOMContentLoaded', () => {
     const urlParams = new URLSearchParams(window.location.search);
     const username = urlParams.get('username');
-    
+
 if (username) {
     const savedResumeData = localStorage.getItem(username);
     if (savedResumeData) {
         const resumeData = JSON.parse(savedResumeData);
+            (document.getElementById('profilepic') as HTMLInputElement).value = 
+            resumeData.profilepic;
             (document.getElementById('username') as HTMLInputElement).value = username;
-            (document.getElementById('name') as HTMLInputElement).value =
+            (document.getElementById('name') as HTMLInputElement).value = 
             resumeData.name;
             (document.getElementById('email') as HTMLInputElement).value =
             resumeData.email;
-            (document.getElementById('phone') as HTMLInputElement).value =
+            (document.getElementById('contact') as HTMLInputElement).value =
             resumeData.contact;
             (document.getElementById('education') as HTMLTextAreaElement).value =
             resumeData.education;
@@ -85,5 +92,4 @@ if (username) {
           (document.getElementById('skills') as HTMLTextAreaElement).value = resumeData.skills;
         }
     }        
-
 });

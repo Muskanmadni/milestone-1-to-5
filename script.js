@@ -1,10 +1,12 @@
 var shareableLink = document.getElementById('shareable-link-container');
 var shareableLinks = document.getElementById('shareable-link');
-var pdfbutton = document.getElementById('Downloadpdf');
+var pdfbutton = document.getElementById('download-Button');
 var form = document.getElementById('form');
 var resumeDisplayElement = document.getElementById('resumePreview');
+var profile = document.getElementById('profilepic');
 form.addEventListener('submit', function (event) {
     event.preventDefault();
+    var profile = document.getElementById('profilepic').value;
     var username = document.getElementById('username').value;
     var name = document.getElementById('name').value;
     var email = document.getElementById('email').value;
@@ -22,7 +24,7 @@ form.addEventListener('submit', function (event) {
         skills: skills
     };
     localStorage.setItem(username, JSON.stringify(resumeData)); // Saving the data locally
-    var resumePreview = "\n    <h2><b>Resume</b></h2>\n    <h3>Personal Information</h3>\n    <p><b>Name : </b><span contenteditable=\"true\">".concat(name, "</span></p>\n    <p><b>Email : </b><span contenteditable=\"true\">").concat(email, "</span></p>\n    <p><b>Contact : </b><span contenteditable=\"true\">").concat(contact, "</span></p>\n    <p><b>DOB : </b><span contenteditable=\"true\">").concat(DOB, "</span></p>\n    <p><b>Education : </b><span contenteditable=\"true\">").concat(education, "</span></p>\n\n    <p><b>Skills : </b><span contenteditable=\"true\">").concat(skills, "</span></p>\n    <p><b>Experience : </b><span contenteditable=\"true\">").concat(Experience, "</span></p>\n    ");
+    var resumePreview = "\n    <h2><b>Resume</b></h2>\n    <h3>Personal Information</h3>\n    <p><b></b><span contenteditable=\"true\">".concat(profile, "</span></p>\n    <p><b>Name : </b><span contenteditable=\"true\">").concat(name, "</span></p>\n    <p><b>Email : </b><span contenteditable=\"true\">").concat(email, "</span></p>\n    <p><b>Contact : </b><span contenteditable=\"true\">").concat(contact, "</span></p>\n    <p><b>DOB : </b><span contenteditable=\"true\">").concat(DOB, "</span></p>\n    <p><b>Education : </b><span contenteditable=\"true\">").concat(education, "</span></p>\n    <p><b>Skills : </b><span contenteditable=\"true\">").concat(skills, "</span></p>\n    <p><b>Experience : </b><span contenteditable=\"true\">").concat(Experience, "</span></p>\n    ");
     resumeDisplayElement.innerHTML = resumePreview;
     // Generate a shareable URL with the username only
     var shareableURL = "".concat(window.location.origin, "?username=").concat(encodeURIComponent(username));
@@ -33,12 +35,15 @@ form.addEventListener('submit', function (event) {
 });
 // Handle PDF download
 pdfbutton.addEventListener('click', function () {
-    window.print(); // This will open the print dialog and allow the user to save as PDF
+    window.print();
 });
 // Prefill the form based on the username in the URL
 window.addEventListener('DOMContentLoaded', function () {
     var urlParams = new URLSearchParams(window.location.search);
     var username = urlParams.get('username');
+});
+profile.addEventListener('change', function () {
+    window.File;
 });
 window.addEventListener('DOMContentLoaded', function () {
     var urlParams = new URLSearchParams(window.location.search);
@@ -47,12 +52,14 @@ window.addEventListener('DOMContentLoaded', function () {
         var savedResumeData = localStorage.getItem(username);
         if (savedResumeData) {
             var resumeData = JSON.parse(savedResumeData);
+            document.getElementById('profilepic').value =
+                resumeData.profilepic;
             document.getElementById('username').value = username;
             document.getElementById('name').value =
                 resumeData.name;
             document.getElementById('email').value =
                 resumeData.email;
-            document.getElementById('phone').value =
+            document.getElementById('contact').value =
                 resumeData.contact;
             document.getElementById('education').value =
                 resumeData.education;
